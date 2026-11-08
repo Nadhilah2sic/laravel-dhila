@@ -58,7 +58,7 @@
                                         <th class="border-0">NAME</th>
                                         <th class="border-0">EMAIL</th>
                                         <th class="border-0">Password</th>
-                                        <th class="border-0 rounded-end">ACTION</th>
+                                     
                                     </tr>
                                 </thead>
                                 <tbody>

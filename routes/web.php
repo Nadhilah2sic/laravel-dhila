@@ -7,10 +7,11 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\MatakuliahController;
-use App\Htpp\Controllers\UserController;
-// 1. Route Home (menambahkan name('home') di URL /home dan /)
+use App\Http\Controllers\UserController;
+
+// 1. Route Home
 Route::get('/', [QuestionController::class, 'index'])->name('home');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index']);
 
 // 2. Route Question
 Route::post('/question', [QuestionController::class, 'store'])->name('question.store');
@@ -45,8 +46,9 @@ Route::get('/about', function () {
 Route::get('/matakuliah/show/{kode?}', [MatakuliahController::class, 'show']);
 Route::resource('matakuliah', MatakuliahController::class);
 
-// 5. Route Dashboard & Pelanggan
+// 5. Route Dashboard, Pelanggan, & User
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// Resource Pelanggan & User
 Route::resource('pelanggan', PelangganController::class);
-// BENAR (perbaikannya):
-Route::resource('User', UserController::class);
+Route::resource('user', UserController::class);
