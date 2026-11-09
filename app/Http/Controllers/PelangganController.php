@@ -11,12 +11,22 @@ class PelangganController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    
-{
-    $dataPelanggan = Pelanggan::all();
-    return view('admin.pelanggan.index', compact('dataPelanggan'));
-}
+    public function index(Request $request)
+    {
+        // Daftar kolom yang bisa difilter (dropdown)
+        $filterableColumns = ['gender'];
+
+        // Daftar kolom yang bisa dicari via form search (sesuai instruksi modul)[cite: 8]
+        $searchableColumns = ['first_name']; // Bisa ditambah: ['first_name', 'last_name', 'email']
+
+        // Gunakan scope filter & search untuk memproses query[cite: 8]
+        $data['dataPelanggan'] = Pelanggan::filter($request, $filterableColumns)
+                                    ->search($request, $searchableColumns)
+                                    ->paginate(10)
+                                    ->withQueryString();
+
+        return view('admin.pelanggan.index', $data);
+    }
 
     /**
      * Show the form for creating a new resource.
